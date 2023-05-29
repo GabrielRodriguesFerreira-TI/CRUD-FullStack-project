@@ -1,0 +1,22 @@
+$padding: clamp(15px, 5%, 60px);
+$font-size-title: clamp(40px, 5%, 70px);
+$font-size-text: clamp(16px, 5vw, 28px);
+$background-image: url("../../assets/pexels-ylanite-koppens-1906440.jpg");
+
+.window {
+  padding: $padding;
+  font-size: $font-size-title;
+  background-image: $background-image;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.font-size-text {
+  font-size: $font-size-text;
+}
+
+nav {
+  padding: $padding;
+}
