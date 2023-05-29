@@ -1,5 +1,5 @@
-$padding: clamp(15px, 5%, 60px);
-$font-size-title: clamp(40px, 5%, 70px);
+$padding: clamp(15px, 5%, 50px);
+$font-size-title: clamp(30px, 5%, 70px);
 $font-size-text: clamp(16px, 5vw, 28px);
 $background-image: url("../../assets/pexels-ylanite-koppens-1906440.jpg");
 
@@ -19,4 +19,18 @@ $background-image: url("../../assets/pexels-ylanite-koppens-1906440.jpg");
 
 nav {
   padding: $padding;
+}
+
+.homePageDescription {
+  padding: $padding;
+
+  @media (min-width: 1364px) {
+    top: 120px;
+    left: 220px;
+  }
+
+  @media (min-width: 1600px) {
+    top: 100px;
+    left: 310px;
+  }
 }

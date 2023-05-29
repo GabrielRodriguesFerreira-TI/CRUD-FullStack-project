@@ -4,9 +4,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Contact Connect - Homepage",
-  description:
-    "Simplifique sua gestão de clientes e contatos com o Contact Connect.",
+  title: "ClientHub - Homepage",
+  description: "Simplifique sua gestão de clientes e contatos com o ClientHub.",
 };
 
 export default function RootLayout({
