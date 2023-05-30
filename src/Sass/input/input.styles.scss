@@ -3,6 +3,7 @@
 }
 
 .placeholderInput {
+  font-size: clamp(16px, 5vw, 20px);
   &::placeholder {
     font-size: clamp(16px, 5vw, 20px) !important;
   }
