@@ -14,10 +14,7 @@ export default function Home() {
           className="font-size-text text-[#1A4CC7] font-bold relative"
           href="/login"
         >
-          <span className="group">
-            Login
-            <span className="absolute left-0 bottom-[-4px] w-full h-0.5 bg-[#1A4CC7] transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-          </span>
+          Login
         </Link>
       </nav>
       <section className="flex w-full h-full justify-center items-center">
@@ -26,7 +23,7 @@ export default function Home() {
             Simplifique sua gestão de clientes e contatos com o ClientHub.
           </h1>
           <Link
-            className="flex justify-center border-2 border-[#1A4CC7] rounded-md font-bold text-[#1A4CC7] md:w-[70%] hover:bg-[#1A4CC7] hover:text-white hover:shadow-blue transition-all duration-300 ease-in-out"
+            className="flex justify-center border-2 border-[#1A4CC7] rounded-md w-full font-bold text-[#1A4CC7] md:w-[70%] hover:bg-[#1A4CC7] hover:text-white hover:shadow-blue transition-all duration-300 ease-in-out"
             href="/register"
           >
             Registre-se
