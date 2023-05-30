@@ -2,25 +2,30 @@
 import "../../Sass/global/responsiviness.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { iFormValues } from "@/interfaces/form/form.styles";
-import { formSchema } from "@/schemas/form/form.schema";
+import { iClientValues } from "@/interfaces/form/form.styles";
+import { clientSchema } from "@/schemas/form/form.schema";
 import { InputComponent } from "../input/Input";
+import { useContext } from "react";
+import { ClientContext } from "@/contexts/clientContext";
 import Link from "next/link";
 
 export const FormComponent = () => {
+  const { registerSubmit } = useContext(ClientContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<iFormValues>({
+  } = useForm<iClientValues>({
     mode: "onBlur",
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(clientSchema),
   });
 
   return (
     <form
       noValidate
-      className="flex flex-col  gap-4 w-full max-w-[360px] bg-[#ffffff76] rounded-md p-4"
+      onSubmit={handleSubmit(registerSubmit)}
+      className="flex flex-col gap-6 w-full max-w-[360px] bg-[#ffffff76] rounded-md p-4"
     >
       <h1 className="text-black font-bold">Registro</h1>
       <InputComponent
