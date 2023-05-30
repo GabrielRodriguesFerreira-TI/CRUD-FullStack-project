@@ -34,3 +34,9 @@ nav {
     left: 310px;
   }
 }
+
+.labelColor {
+  & label {
+    color: #000000;
+  }
+}

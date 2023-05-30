@@ -1,0 +1,9 @@
+.errorInput {
+  border-color: rgb(220 38 38 / 1);
+}
+
+.placeholderInput {
+  &::placeholder {
+    font-size: clamp(16px, 5vw, 20px) !important;
+  }
+}
