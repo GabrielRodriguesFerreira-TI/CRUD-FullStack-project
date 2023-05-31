@@ -19,7 +19,7 @@ export default function Register() {
         </Link>
       </nav>
       <section className="flex w-full h-full justify-center items-center">
-        <FormComponent />
+        <FormComponent typeForm="register" />
       </section>
       <span className="absolute bottom-2 left-0 flex items-center justify-center w-full">
         <p className="text-black text-sm">

@@ -1,25 +1,75 @@
 "use client";
+import { toast } from "react-toastify";
 import { iClientContext } from "@/interfaces/contexts/context.types";
-import { iClientValuesContext } from "@/interfaces/form/form.styles";
+import {
+  iClientLoginValues,
+  iClientValuesContext,
+} from "@/interfaces/form/form.styles";
 import { createContext, useEffect, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 
 export const ClientContext = createContext({} as iClientContext);
 
 export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const APIurl = "https://contact-connect-api-prod.herokuapp.com";
 
-  const createClient: SubmitHandler<iClientValuesContext> = async (data) => {
+  const router = useRouter();
+
+  const loginClient: SubmitHandler<iClientLoginValues> = async (data) => {
     try {
-      await fetch(`${APIurl}/customers`, {
+      setLoading(true);
+      const response = await fetch(`${APIurl}/login`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
       });
+      const responseData = await response.json();
+      const cookies = new Cookies();
+      cookies.set("accessToken", responseData.accessToken);
+      cookies.set("refreshToken", responseData.refreshToken);
+      if (response.ok) {
+        router.replace("/dashboard");
+      } else {
+        throw new Error(`${response.body}`);
+      }
     } catch (error) {
       console.error(error);
+      toast.error(`${error}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginSubmit: SubmitHandler<iClientLoginValues> = async (data) => {
+    await loginClient(data);
+  };
+
+  const createClient: SubmitHandler<iClientValuesContext> = async (data) => {
+    try {
+      setLoading(true);
+      const respose = await fetch(`${APIurl}/customers`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (respose.ok) {
+        router.replace("/login");
+      } else {
+        throw new Error(`${respose.body}`);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,6 +82,9 @@ export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
     <ClientContext.Provider
       value={{
         registerSubmit,
+        loading,
+        setLoading,
+        loginSubmit,
       }}
     >
       {children}
