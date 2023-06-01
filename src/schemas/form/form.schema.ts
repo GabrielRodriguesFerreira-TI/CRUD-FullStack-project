@@ -23,3 +23,8 @@ export const clientSchema = z
       });
     }
   });
+
+export const clientLoginSchema = z.object({
+  email: z.string().email("E-mail inválido").nonempty("Campo obrigatório"),
+  password: z.string().nonempty("Campo obrigatório").min(6).max(200),
+});

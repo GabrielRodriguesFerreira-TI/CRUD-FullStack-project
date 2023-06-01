@@ -1,8 +1,8 @@
 export const metadata = {
-  title: "ClientHub - dashboard",
+  title: "ClientHub - register",
 };
 
-export default function DashboardLayout({
+export default function RegisterLayout({
   children,
 }: {
   children: React.ReactNode;
