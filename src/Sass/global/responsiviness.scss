@@ -2,11 +2,22 @@ $padding: clamp(15px, 5%, 50px);
 $font-size-title: clamp(30px, 5%, 70px);
 $font-size-text: clamp(16px, 5vw, 28px);
 $background-image: url("../../assets/pexels-ylanite-koppens-1906440.jpg");
+$background-image-blurred: url("../../assets/background-borrado.png");
 
 .window {
   padding: $padding;
   font-size: $font-size-title;
   background-image: $background-image;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.window_dashboard {
+  padding: $padding;
+  font-size: $font-size-title;
+  background-image: $background-image-blurred;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

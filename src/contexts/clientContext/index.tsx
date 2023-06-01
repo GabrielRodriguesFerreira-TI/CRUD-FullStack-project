@@ -5,15 +5,18 @@ import {
   iClientLoginValues,
   iClientValuesContext,
 } from "@/interfaces/form/form.styles";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
+import { iLogoutProps } from "@/interfaces/customers/customers.types";
 
 export const ClientContext = createContext({} as iClientContext);
 
 export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const APIurl = "https://contact-connect-api-prod.herokuapp.com";
 
@@ -31,8 +34,10 @@ export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
       });
       const responseData = await response.json();
       const cookies = new Cookies();
-      cookies.set("accessToken", responseData.accessToken);
-      cookies.set("refreshToken", responseData.refreshToken);
+      cookies.set("accessToken", responseData.accessToken, { maxAge: 86400 });
+      cookies.set("refreshToken", responseData.refreshToken, {
+        maxAge: 604800,
+      });
       if (response.ok) {
         router.replace("/dashboard");
       } else {
@@ -85,6 +90,10 @@ export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
         loading,
         setLoading,
         loginSubmit,
+        open,
+        setOpen,
+        isMenuOpen,
+        setIsMenuOpen,
       }}
     >
       {children}
